@@ -170,6 +170,7 @@ class Net {
   inline const vector<bool>& layer_need_backward() const {
     return layer_need_backward_;
   }
+
   /// @brief returns the parameters
   inline const vector<shared_ptr<Blob<Dtype> > >& params() const {
     return params_;
@@ -226,6 +227,12 @@ class Net {
   /// @brief return whether NetState state meets NetStateRule rule
   static bool StateMeetsRule(const NetState& state, const NetStateRule& rule,
       const string& layer_name);
+
+
+  //added by Alexey
+  inline const map<string,int>& blob_names_index() const {
+    return blob_names_index_;
+  }
 
  protected:
   // Helpers for Init.

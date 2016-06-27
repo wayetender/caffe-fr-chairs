@@ -158,6 +158,12 @@ def _Net_backward(self, diffs=None, start=None, end=None, **kwargs):
     return {out: self.blobs[out].diff for out in outputs}
 
 
+def _Net_forward_simple(self):
+    self._forward(0, len(self.layers) - 1)
+    
+def _Net_backward_simple(self):
+    self._backward(len(self.layers) - 1, 0)
+
 def _Net_forward_all(self, blobs=None, **kwargs):
     """
     Run net forward in batches.
@@ -300,6 +306,8 @@ Net.blob_loss_weights = _Net_blob_loss_weights
 Net.params = _Net_params
 Net.forward = _Net_forward
 Net.backward = _Net_backward
+Net.forward_simple = _Net_forward_simple
+Net.backward_simple = _Net_backward_simple
 Net.forward_all = _Net_forward_all
 Net.forward_backward_all = _Net_forward_backward_all
 Net.set_input_arrays = _Net_set_input_arrays
