@@ -44,6 +44,7 @@ TYPED_TEST(LayerFactoryTest, TestCreateLayer) {
     }
     layer_param.set_type(iter->first);
     layer = LayerRegistry<Dtype>::CreateLayer(layer_param);
+    //LOG(INFO) << iter->first << " " << layer->type();
     EXPECT_EQ(iter->first, layer->type());
   }
 }

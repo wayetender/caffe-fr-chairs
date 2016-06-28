@@ -30,6 +30,8 @@ class DataAugmentationLayer : public Layer<Dtype> {
   virtual void Backward_cpu(const vector<Blob<Dtype>*>& top,
       const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom)  { LOG(FATAL) << "DataAugmentationLayer does not do backward"; }
 
+
+  virtual inline const char* type() const { return "DataAugmentation"; }
       
   virtual void generate_spatial_coeffs(const AugmentationParameter& aug, AugmentationCoeff& coeff, Dtype discount_coeff = 1);
   virtual void generate_chromatic_coeffs(const AugmentationParameter& aug, AugmentationCoeff& coeff, Dtype discount_coeff = 1);
