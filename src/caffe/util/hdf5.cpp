@@ -72,14 +72,14 @@ void hdf5_load_nd_dataset<float>(hid_t file_id, const char* dataset_name_,
   CHECK_GE(status, 0) << "Failed to read float dataset " << dataset_name_;
 }
 
-template <>
+/*template <>
 void hdf5_load_nd_dataset<double>(hid_t file_id, const char* dataset_name_,
         int min_dim, int max_dim, Blob<double>* blob) {
   hdf5_load_nd_dataset_helper(file_id, dataset_name_, min_dim, max_dim, blob);
   herr_t status = H5LTread_dataset_double(
     file_id, dataset_name_, blob->mutable_cpu_data());
   CHECK_GE(status, 0) << "Failed to read double dataset " << dataset_name_;
-}
+}*/
 
 template <>
 void hdf5_save_nd_dataset<float>(
@@ -102,7 +102,7 @@ void hdf5_save_nd_dataset<float>(
   delete[] dims;
 }
 
-template <>
+/*template <>
 void hdf5_save_nd_dataset<double>(
     hid_t file_id, const string& dataset_name, const Blob<double>& blob,
     bool write_diff) {
@@ -121,7 +121,7 @@ void hdf5_save_nd_dataset<double>(
       file_id, dataset_name.c_str(), num_axes, dims, data);
   CHECK_GE(status, 0) << "Failed to make double dataset " << dataset_name;
   delete[] dims;
-}
+}*/
 
 string hdf5_load_string(hid_t loc_id, const string& dataset_name) {
   // Get size of dataset
