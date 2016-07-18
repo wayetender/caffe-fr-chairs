@@ -399,6 +399,7 @@ message LayerParameter {
   optional TanHParameter tanh_param = 127;
   optional ThresholdParameter threshold_param = 128;
   optional TileParameter tile_param = 138;
+  optional VLFeatParameter vlfeat_param = 5004;
   optional WindowDataParameter window_data_param = 129;
 }
 
@@ -1129,6 +1130,25 @@ message TileParameter {
 message ThresholdParameter {
   optional float threshold = 1 [default = 0]; // Strictly positive values
 }
+
+message VLFeatParameter {
+  optional string descriptor_type = 1 [default = "HOG"]; // "HOG" or "SIFT"
+  optional int32 hog_cell_size = 2 [default = 8];
+  optional int32 hog_num_orientations = 3 [default = 9];
+  optional string hog_variant = 4 [default = "UOCTTI"]; // "UOCTI" or "DalalTriggs"
+  optional int32 num_threads = 5 [default = 1]; // number of threads for openmp
+  optional float fixed_angle = 6 [default = 0.]; //set angle for all keypoints to this value
+  optional float fixed_sigma = 7 [default = 2.]; //set sigma for all keypoints to this value
+  optional float fixed_displacement = 8 [default = 0.]; //set displacement for all keypoints to this value
+  optional int32 lbp_cell_size = 9 [default = 16];
+  optional float replace_angle = 10 [default = 0.]; // set the angle feature going in to the net to this value (while the actual keypoint orientation is different)
+  optional float replace_sigma = 11 [default = 2.]; // set the sigma feature going in to the net to this value (while the actual keypoint orientation is different)
+  optional float box_minx = 12 [default = 0]; // box within which keypoints are set to zero
+  optional float box_miny = 13 [default = 0]; // box within which keypoints are set to zero
+  optional float box_maxx = 14 [default = 0]; // box within which keypoints are set to zero
+  optional float box_maxy = 15 [default = 0]; // box within which keypoints are set to zero
+}
+
 
 message WindowDataParameter {
   // Specify the data source.
