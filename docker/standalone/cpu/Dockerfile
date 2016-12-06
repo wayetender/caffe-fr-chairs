@@ -30,7 +30,7 @@ WORKDIR $CAFFE_ROOT
 # FIXME: clone a specific git tag and use ARG instead of ENV once DockerHub supports this.
 ENV CLONE_TAG=master
 
-COPY ../../../ .
+COPY . .
 
 RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
     mkdir build && cd build && \
