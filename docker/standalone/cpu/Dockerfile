@@ -32,8 +32,9 @@ ENV CLONE_TAG=master
 
 COPY . .
 
-RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
-    mkdir build && cd build && \
+RUN for req in $(cat python/requirements.txt) pydot; do pip install $req; done
+
+RUN mkdir build && cd build && \
     cmake -DCPU_ONLY=1 .. && \
     make -j"$(nproc)"
 
